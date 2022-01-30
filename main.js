@@ -20,13 +20,12 @@ const dfs = (packages) => {
   for (let i = 0; i < packages.length; i++) {
     if (!visited[packages[i]]) {
       visited[packages[i]] = true;
-      console.log(packages[i]);
-      console.log(graph.nodes);
+
       graph.nodes.push({ id: packages[i] });
       const url = `/node_modules/${packages[i]}/package.json`;
-      console.log(url);
+
       const t = readFile(url);
-      console.log(t.dependencies);
+
       const m = Object.keys(t.dependencies);
       m.forEach((dep) => {
         dfs(m);
@@ -42,12 +41,12 @@ const dfs = (packages) => {
     }
   }
 };
+
 const init = () => {
   const start = Object.keys(readFile("/package.json").dependencies);
   dfs(start);
   fs.writeFile("graph.json", JSON.stringify(graph), function (err) {
     if (err) {
-      console.log(err);
     }
   });
 };

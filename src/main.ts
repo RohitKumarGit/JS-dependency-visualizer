@@ -1,26 +1,5 @@
 //import './style.css'
-import datas from "./data.json";
-var data = {
-  nodes: [
-    { id: "Richard" },
-    { id: "Larry" },
-    { id: "Marta" },
-    { id: "Jane" },
-    { id: "Norma" },
-    { id: "Frank" },
-    { id: "Brett" },
-  ],
-  edges: [
-    { from: "Richard", to: "Larry" },
-    { from: "Richard", to: "Marta" },
-    { from: "Larry", to: "Marta" },
-    { from: "Marta", to: "Jane" },
-    { from: "Jane", to: "Norma" },
-    { from: "Jane", to: "Frank" },
-    { from: "Jane", to: "Brett" },
-    { from: "Brett", to: "Frank" },
-  ],
-};
+
 declare const anychart: any;
 const drawGraph = function (datas) {
   // create an instance of a pie chart

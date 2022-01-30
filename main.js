@@ -1,14 +1,7 @@
-import fs from "fs";
-import path from "path";
-class Base {
-  dependencies: any;
-}
-class Graph {
-  nodes: any;
-  edges: any;
-}
-const graph: Graph = { nodes: [], edges: [] };
-const readFile = (url: string) => {
+const fs = require("fs");
+const path = require("path");
+const graph = { nodes: [], edges: [] };
+const readFile = (url) => {
   try {
     let rawData = fs.readFileSync(__dirname + url);
     const base = JSON.parse(String(rawData));
@@ -16,14 +9,14 @@ const readFile = (url: string) => {
     if (!base.dependencies) {
       throw new Error();
     }
-    return base as Base;
+    return base;
   } catch (error) {
     console.log(__dirname + url);
     return { dependencies: [] };
   }
 };
-const visited: any = {};
-const dfs = (packages: string[]) => {
+const visited = {};
+const dfs = (packages) => {
   for (let i = 0; i < packages.length; i++) {
     if (!visited[packages[i]]) {
       visited[packages[i]] = true;
@@ -49,7 +42,7 @@ const dfs = (packages: string[]) => {
     }
   }
 };
-export const init = () => {
+const init = () => {
   const start = Object.keys(readFile("/package.json").dependencies);
   dfs(start);
   fs.writeFile("graph.json", JSON.stringify(graph), function (err) {

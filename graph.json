@@ -1,1 +1,7 @@
-{ "nodes": [{ "id": "@types/node" }], "edges": [] }
+{
+  "nodes": [{}, { "id": "@types/node" }],
+  "edges": [
+    { "from": ["@types/node"], "to": "@types/node" },
+    { "to": ["@types/node"], "from": "@types/node" }
+  ]
+}
